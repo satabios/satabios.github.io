@@ -13,6 +13,12 @@ I am a Computer Vision Researcher interested in Deep Learning, Reinforcement Lea
 
 Fast-forward to today, and I’ve had the privilege of working at, [NeuRonICS Lab](https://labs.dese.iisc.ac.in/neuronics/); IISc, Bangalore and at [Great Learning](https://www.greatlearning.in/), Bangalore.
 
-Research Interests
-==================
+## Research Interests
+
 Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal Procesing, Compressive Sensing, Neuromorphic Engineering, Event Based Data, NVIDIA TX
+
+## Recent Updates
+
+- Paper Selected for *ICIP 2021*
+- *CVPR 2021- Kaggle Plant Pathology 2021-FGCV*
+- US Patent Filed: *METHOD AND SYSTEM FOR RECOGNIZING ACTIVITIES IN SURROUNDING ENVIRONMENT FOR CONTROLLING NAVIGATION OF AUTONOMOUS VEHICLE*

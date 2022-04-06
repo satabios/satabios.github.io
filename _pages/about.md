@@ -19,6 +19,10 @@ Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal 
 
 ## Recent Updates
 
+<<<<<<< HEAD
 - Paper Selected for *ICIP 2021*
+=======
+- Paper Selected for *ICIP 2021*.
+>>>>>>> 1acb8b4bbb8e8478768616d3291e0851b7908bd2
 - *CVPR 2021- Kaggle Plant Pathology 2021-FGCV*
 - US Patent Filed: *METHOD AND SYSTEM FOR RECOGNIZING ACTIVITIES IN SURROUNDING ENVIRONMENT FOR CONTROLLING NAVIGATION OF AUTONOMOUS VEHICLE*

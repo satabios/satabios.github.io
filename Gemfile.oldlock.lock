@@ -240,7 +240,6 @@ GEM
     nokogiri (1.11.7-x64-mingw32)
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
->>>>>>> 1acb8b4bbb8e8478768616d3291e0851b7908bd2
       racc (~> 1.4)
     octokit (4.21.0)
       faraday (>= 0.9)
@@ -289,7 +288,6 @@ PLATFORMS
   universal-darwin-21
 =======
   ruby
->>>>>>> 1acb8b4bbb8e8478768616d3291e0851b7908bd2
   x64-mingw32
 
 DEPENDENCIES
@@ -308,4 +306,3 @@ BUNDLED WITH
    2.3.10
 =======
    2.2.21
->>>>>>> 1acb8b4bbb8e8478768616d3291e0851b7908bd2

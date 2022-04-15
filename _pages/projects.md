@@ -32,4 +32,3 @@ author_profile: true
 {% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
->>>>>>> 1acb8b4bbb8e8478768616d3291e0851b7908bd2

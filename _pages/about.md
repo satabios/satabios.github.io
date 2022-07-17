@@ -20,7 +20,7 @@ Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal 
 ## Recent Updates
 
 - Selected as a Reviewer for **WACV 2023**
-- Incoming Grduate Student: **UCSC** Fall 2022
-- Paper Selected for **ICIP 2021**:[Paper](https://ieeexplore.ieee.org/abstract/document/9506769)
+- Incoming Student: **UCSC** Fall 2022
+- Paper Selected for **ICIP 2021**: [Paper](https://ieeexplore.ieee.org/abstract/document/9506769)
 - **CVPR 2021**- Kaggle Plant Pathology 2021-FGCV
 - **US Patent Filed:** <em>METHOD AND SYSTEM FOR RECOGNIZING ACTIVITIES IN SURROUNDING ENVIRONMENT FOR CONTROLLING NAVIGATION OF AUTONOMOUS VEHICLE</em>

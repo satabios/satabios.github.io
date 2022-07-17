@@ -10,6 +10,4 @@ echo "Message to commit the changes made?"
 read message
 
 git_push "$message"
-cd public
-git_push "$message"
 

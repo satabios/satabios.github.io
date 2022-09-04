@@ -9,7 +9,7 @@ redirect_from:
 ---
 Hi, There. I Am Sathyaprakash Narayanan.
 
-I am a Computer Vision Researcher interested in Deep Learning, Reinforcement Learning, Neuromorphic Engineering. If you are curious feel free to dive into my publications and patents at [Google Scholar](https://scholar.google.com/citations?user=rI5VHWoAAAAJ&hl=en&oi=ao). You can catch up on my kaggle achievements on [Kaggle](https://www.kaggle.com/satabios). Browse my visual depection on [Instagram](https://www.instagram.com/brat_rat.sathya/).
+I am a Computer Vision Researcher interested in Deep Learning and Neuromorphic Engineering. If you are curious feel free to dive into my publications and patents at [Google Scholar](https://scholar.google.com/citations?user=rI5VHWoAAAAJ&hl=en&oi=ao). You can catch up on my kaggle achievements on [Kaggle](https://www.kaggle.com/satabios). Browse my visual depection on [Instagram](https://www.instagram.com/brat_rat.sathya/).
 
 Fast-forward to today, I'm working as a ***Machine Learning Scientist*** at [Lytx](https://www.lytx.com/en-us/). Also in the past I’ve had the privilege of working at, [NeuRonICS Lab](https://labs.dese.iisc.ac.in/neuronics/); IISc, Bangalore and at [Great Learning](https://www.greatlearning.in/), Bangalore.
 

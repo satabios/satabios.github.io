@@ -18,7 +18,7 @@ Fast-forward to today, I'm working as a ***Machine Learning Scientist*** at [Lyt
 Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal Procesing, Compressive Sensing, Neuromorphic Engineering, Event Based Data, NVIDIA TX
 
 ## Recent Updates
-
+- Selected as a Reviwer for **IEEE Transactions on Pattern Analysis and Machine Intelligence**
 - Selected as a Reviewer for **WACV 2023**
 - Incoming Student: **UCSC** Fall 2022
 - Paper Selected for **ICIP 2021**: [Paper](https://ieeexplore.ieee.org/abstract/document/9506769)

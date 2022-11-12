@@ -83,8 +83,8 @@ author:
   name             : "Sathyaprakash Narayanan"
   avatar           : "pic.jpg"
   bio              : "Research Assocaite"
-  location         : "Bangalore, India"
-  employer         : "IISc, Bangalore, India"
+  location         : "Santa Cruz, California, USA"
+  # employer         : "IISc, Bangalore, India"
   googlescholar    : "https://scholar.google.com/citations?user=rI5VHWoAAAAJ&hl=en"
   email            : "804ltkrao@relay.firefox.com"
   uri              :
@@ -100,7 +100,7 @@ author:
   instagram        :
   lastfm           :
   linkedin         : "https://www.linkedin.com/in/sathyaprakash-narayanan-87b07850/"
-  orcid            : 
+  orcid            : "https://orcid.org/my-orcid?orcid=0000-0002-5490-4596/"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username

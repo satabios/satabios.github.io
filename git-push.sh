@@ -3,7 +3,7 @@
 git_push(){
 	git add .
 	git commit -m "$1"
-	git push -u origin master
+	git push -u -f origin master
 	}
 
 echo "Message to commit the changes made?"

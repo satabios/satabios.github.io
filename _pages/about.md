@@ -18,11 +18,12 @@ Fast-forward to today, I'm a graduate student of UCSC. I worked as a ***Machine 
 Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal Procesing, Compressive Sensing, Neuromorphic Engineering, Event Based Data, NVIDIA TX
 
 ## Recent Updates
+
+- [Torch Model Compression(tomoco)](https://pypi.org/project/tomoco/) beta package released 
 -  **Patent Published** : [**METHOD AND SYSTEM FOR RECOGNIZING ACTIVITIES IN SURROUNDING ENVIRONMENT FOR CONTROLLING NAVIGATION OF AUTONOMOUS VEHICLE**](https://patents.google.com/patent/US20220324477A1/en)
- 
 - Selected as a Reviwer for **IEEE Transactions on Pattern Analysis and Machine Intelligence**
 - Selected as a Reviewer for **WACV 2023**
 - Incoming Student: **UCSC** Fall 2022
 - Paper Selected for **ICIP 2021**: [Paper](https://ieeexplore.ieee.org/abstract/document/9506769)
-- **CVPR 2021**- Kaggle Plant Pathology 2021-FGCV
+
 

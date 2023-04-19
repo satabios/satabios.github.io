@@ -13,6 +13,8 @@ I am a Computer Vision Researcher interested in Deep Learning and Neuromorphic E
 
 Fast-forward to today, I'm a graduate student of UCSC. I worked as a ***Machine Learning Scientist*** at [Lytx](https://www.lytx.com/en-us/). Also in the past I’ve had the privilege of working at, [NeuRonICS Lab](https://labs.dese.iisc.ac.in/neuronics/); IISc, Bangalore and at [Great Learning](https://www.greatlearning.in/), Bangalore.
 
+Proud owner of my pet [ToMoCo(Torch Model Compression) Package](https://github.com/satabios/tomoco).
+
 ## Research Interests
 
 Computer Vision, Deep Learning, Machine Learning, Computational Imaging, Signal Procesing, Compressive Sensing, Neuromorphic Engineering, Event Based Data, NVIDIA TX

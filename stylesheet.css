@@ -129,12 +129,3 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
-
-/* Adding zoom effect */
-.zoom {
-  transition: transform .2s ease-in-out;
-}
-
-.zoom:hover {
-  transform: scale(1.2);
-}

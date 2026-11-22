@@ -27,7 +27,7 @@ Changing a value updates desktop and mobile on the next load. A cached browser m
 
 ## Mobile composition
 
-The mobile header holds Sections, Motion, and RSVP. The landing copy sits above the pond painting, and the other sections open with their illustrations above the text. Biographies stack on phones and sit side by side on tablets. RSVP inputs use 16px text and larger touch targets. Phone scrolling is unpinned, and the illustrations animate according to the visitor’s motion preference.
+The mobile header holds Sections, Motion, and RSVP. Section headings and opening copy sit over the paintings, with a soft paper wash for readability. Longer sections flow into the paper beneath the artwork. Biographies stack on phones and sit side by side on tablets. RSVP inputs use 16px text and larger touch targets. Phone scrolling is unpinned, and the illustrations animate according to the visitor’s motion preference.
 
 ## A single downloadable HTML after later edits
 

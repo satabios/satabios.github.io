@@ -335,7 +335,7 @@ window.WEDDING_SETTINGS = {
    const setOpen=open=>{header.classList.toggle('menu-open',open);button.setAttribute('aria-expanded',String(open));};
    button.addEventListener('click',()=>setOpen(!header.classList.contains('menu-open')));
    // Collapse before the animation handler measures the target/header geometry.
-   nav.addEventListener('click',event=>{if(event.target.closest('a'))setOpen(false);},true);
+   header.addEventListener('click',event=>{if(event.target.closest('a'))setOpen(false);},true);
    header.addEventListener('keydown',event=>{if(event.key==='Escape'){setOpen(false);button.focus();}});
    document.addEventListener('click',event=>{if(!header.contains(event.target))setOpen(false);});
    matchMedia('(min-width:1050px)').addEventListener('change',()=>setOpen(false));
@@ -1694,15 +1694,20 @@ body{font-family:var(--font-body);font-size:1rem;line-height:1.65;font-synthesis
  .figma-header [data-name="Navigation · editable labels"] a{display:flex;align-items:center;min-height:48px;padding:10px 6px;border-top:1px solid #32464018;text-decoration:none;white-space:normal;overflow-wrap:anywhere}
  .figma-header [data-name="Navigation · editable labels"] span{font-size:.875rem!important}
  .figma-header a[aria-current=location]{background:#753d2c0b;text-decoration:underline}
- .figma-section.story-scene{min-height:0;isolation:isolate}
- .story-scene>.viewport-art{position:relative;inset:auto;aspect-ratio:2 / 1;opacity:1!important}
- #poem>.viewport-art{aspect-ratio:3 / 2;max-height:450px}
+ .figma-section.story-scene{--art-height:clamp(300px,80vw,520px);--art-ratio:2;--art-focus:.5;min-height:var(--art-height);isolation:isolate}
+ .story-scene>.viewport-art{z-index:0;height:var(--art-height);opacity:1!important}
  .story-scene>.viewport-art>[data-name^=BLEND]{display:none}
- .story-scene>.viewport-art::after{content:"";position:absolute;inset:0;z-index:5;background:linear-gradient(to bottom,var(--scene-paper,var(--paper)),transparent 12%,transparent 84%,var(--scene-paper,var(--paper)))}
- .story-scene>.viewport-art .figma-artwork{transform:none!important}
- .story-scene>.figma-canvas{padding:12px clamp(18px,5vw,48px) 48px}
+ .story-scene>.viewport-art::after{content:"";position:absolute;inset:0;z-index:5;background:linear-gradient(to bottom,var(--scene-paper,var(--paper)),transparent 12%,transparent 68%,var(--scene-paper,var(--paper)))}
+ .story-scene>.viewport-art>.figma-artwork{
+  --art-width:calc(var(--art-height) * var(--art-ratio));
+  width:max(100%,var(--art-width))!important;
+  left:min(0px,calc((100% - var(--art-width)) * var(--art-focus)))!important;
+  right:auto!important;
+  transform:none!important;
+ }
+ .story-scene>.figma-canvas{padding:clamp(72px,20vw,144px) clamp(22px,6vw,48px) 48px}
  .story-scene>.figma-canvas>div{gap:32px}
- .figma-canvas [data-type-flow]::before{inset:-15px -12px;opacity:var(--paper-wash);filter:blur(18px)}
+ .figma-canvas [data-type-flow]::before{inset:-12px -8px;opacity:var(--paper-wash);filter:blur(22px)}
  .figma-canvas [data-type-flow]{min-width:0;max-width:620px;gap:16px;overflow-wrap:anywhere}
  .figma-canvas [data-type-flow]>[data-type="eyebrow"]{font-size:.875rem;letter-spacing:.085em;line-height:1.65}
  .figma-canvas [data-type-flow]>[data-type="heading"]{font-size:clamp(2.2rem,6.2vw,3rem);line-height:1.12;overflow-wrap:anywhere;text-wrap:balance}
@@ -1710,9 +1715,12 @@ body{font-family:var(--font-body);font-size:1rem;line-height:1.65;font-synthesis
  .figma-canvas [data-type-flow]>[data-type="body"][data-node-id],.figma-canvas [data-type-flow]>.figma-bio-details[class]{font-size:1rem;line-height:1.75}
  .figma-canvas [data-type-flow]>[data-type="verse"]{font-size:clamp(1.25rem,4.6vw,1.875rem)!important;line-height:1.9!important;overflow-wrap:anywhere}
  .figma-canvas [data-type-flow]>a{min-height:44px;display:inline-flex;align-items:center;width:fit-content!important}
- #home{display:flex;flex-direction:column;padding-bottom:16px}
- #home>.figma-canvas{order:-1;padding-block:32px 8px}
+ #home{--art-height:clamp(490px,125vw,640px);--art-focus:.72}
+ #home>.figma-canvas{padding-block:clamp(32px,9vw,72px) 70px}
  #home [data-node-id="3:24"]{max-width:520px}
+ #home [data-type-flow]::before,#poem [data-type-flow]::before{display:block}
+ #poem{--art-ratio:1.5}
+ #location{--art-focus:.75}
  #intro [data-name="COPY · The bride · freely move this block"]{order:0}
  #intro [data-node-id="3:65"]{order:1;padding-block:20px;border-block:1px solid #753d2c25}
  #intro .figma-bio-details{padding:0;background:transparent;border:0}

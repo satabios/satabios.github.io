@@ -27,7 +27,7 @@ Changing a value updates desktop and mobile on the next load. A cached browser m
 
 ## Mobile composition
 
-The compact Sections menu offers the same ordered navigation. Paintings open each section; text flows into a softened lower edge. Biographies stack on phones and sit side by side on tablets. Inputs use a readable 16px size with larger touch targets. Phone scrolling is unpinned; the illustrated scene animations remain active unless motion is reduced or switched off. No mobile redirect is required.
+The mobile header holds Sections, Motion, and RSVP. The landing copy sits above the pond painting, and the other sections open with their illustrations above the text. Biographies stack on phones and sit side by side on tablets. RSVP inputs use 16px text and larger touch targets. Phone scrolling is unpinned, and the illustrations animate according to the visitor’s motion preference.
 
 ## A single downloadable HTML after later edits
 
@@ -52,4 +52,4 @@ The script points at the supplied RSVP spreadsheet. The web app can append or co
 
 ## Verification
 
-Reviewed in browser frames at 320px, 390px, 768px, and 1440px: no horizontal overflow or overlapping text groups. Verified the phone navigation, closed-RSVP notice, and an external settings fixture changing the headline, date, and venue at phone and desktop widths. JavaScript syntax checks passed. WebGL falls back to the painting if unsupported; GPU shader appearance was not verified in this environment.
+Checked the mobile layout in Chromium at 320px, 390px, 430px, 768px, and 1049px, and checked the desktop layout at 1440px. Tested the Sections menu, Motion toggle, RSVP link, and thank-you screen with a simulated RSVP response. Hardware-accelerated WebGL and a live RSVP submission were outside this check.

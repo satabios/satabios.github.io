@@ -69,7 +69,7 @@ html.wedding-motion-gsap:not(.wedding-motion-off) .door-right{animation:none}
 @keyframes elephant-greeting{0%,100%{transform:rotate(0)}35%,65%{transform:rotate(.8deg)}82%{transform:rotate(-.3deg)}}
 @keyframes story-copy-arrival{from{opacity:.5;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:1000px){.desktop-nav{display:none}}
-@media(max-width:760px){.motion-toggle{right:10px;bottom:10px;font-size:9px;padding:7px 9px}}
+.wedding-motion-off{scroll-behavior:auto!important}
 .wedding-motion-off *, .wedding-motion-off *::before, .wedding-motion-off *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .wedding-motion-off .scene-actor-mount,.wedding-motion-off .pond-webgl-mount{display:none!important}.wedding-motion-off .reveal{opacity:1!important;transform:none!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}.scene-actor-mount,.pond-webgl-mount{display:none!important}.reveal{opacity:1!important;transform:none!important}}
@@ -740,10 +740,11 @@ window.WEDDING_SETTINGS = {
     if(name==='awaiting')body+='<rect x="965" y="153" width="272" height="404" fill="url(#'+id('room')+')"/><path d="M977 520 1225 520M1006 153V520M1190 153V520" stroke="#ddbc792b" stroke-width="3"/><g class="door-left">'+use('original','clip-path="url(#'+id('door-left')+')"')+'</g><g class="door-right">'+use('original','clip-path="url(#'+id('door-right')+')"')+'</g>'+use('original','clip-path="url(#'+id('door-front')+')"');
     return '<svg class="scene-actor-svg" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="'+fit+'" aria-hidden="true">'+defs+body+'</svg>';
   }
-  function mount(win,onReady){
+  function mount(win,onReady,canBuild=()=>true){
     const doc=win.document,records=new Map(),timers=new Map();let serial=0;
     function refresh(){
       for(const [art,rec] of records)if(!art.isConnected){reset(art);for(const cancel of rec.cancelLoads)cancel();records.delete(art);}
+      if(!canBuild())return;
       doc.querySelectorAll('.scene-actor-mount').forEach(host=>{
         const art=host.closest('.blended-art');if(!art||records.has(art))return;
         const name=host.dataset.scene,info=sceneInfo[name],img=art.querySelector('img:not([data-motion-plate])'),plate=art.querySelector('[data-motion-plate]');
@@ -839,15 +840,17 @@ window.WEDDING_SETTINGS = {
       ScrollTrigger.config({ ignoreMobileResize: true });
       doc.documentElement.classList.add('wedding-motion-gsap');
     }
-    const pondRipples = win.WeddingPondRipples?.mount(win);
+    let pondRipples;
     const media = win.matchMedia ? win.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+    const staticLayout = win.matchMedia?.('(width <= 1049px), (hover: none) and (pointer: coarse)');
     let enabled = win.WEDDING_SETTINGS?.motion.enabledByDefault !== false;
     try { enabled = win.localStorage.getItem('wedding-motion') !== 'off'; } catch (_) { /* Storage is optional. */ }
+    const reduced = () => !enabled || media.matches || staticLayout?.matches === true;
     const root = doc.createElement('div');
     root.id = 'story-motion';
     root.innerHTML = '<button type="button" class="motion-toggle" aria-pressed="true">Motion: on</button>';
     const actors = win.WeddingSceneActors?.mount(win, (art, played) => {
-      if (art.querySelector('.scene-actor-mount')?.dataset.scene === 'thanks') {
+      if (!reduced() && art.querySelector('.scene-actor-mount')?.dataset.scene === 'thanks') {
         pondRipples?.attach(art, art.querySelector('img:not([data-motion-plate])'));
       }
       if (played) { seenArtwork.add(art); return; }
@@ -855,7 +858,7 @@ window.WEDDING_SETTINGS = {
       if (allowReady && !reduced() && (!pending || pending.arrived) && actors.visible(art) && !seenArtwork.has(art)) {
         if (actors.play(art, 'arrive')) seenArtwork.add(art);
       }
-    });
+    }, () => !reduced());
     let actorObserver = null, loadObserver = null, allowReady = true, formFocused = false;
     const seenArtwork = new WeakSet();
     const sectionTriggers = new Map();
@@ -867,17 +870,6 @@ window.WEDDING_SETTINGS = {
     let sections = [], headerHeight = 80, active = 'home', pending = null, raf = 0, initialRaf = 0, finishTimer = 0, refreshRaf = 0, stRefreshRaf = 0, generation = 0, lastHash = win.location.hash, observer = null;
     const disposers = [];
     const on = (target, type, callback, options) => { target.addEventListener(type, callback, options); disposers.push(() => target.removeEventListener(type, callback, options)); };
-    const reduced = () => !enabled || media.matches;
-    const mobileLayout = win.matchMedia?.('(width <= 1049px)');
-    const headerRsvp = doc.querySelector('.figma-header .figma-canvas>div>a');
-    if (headerRsvp && mobileLayout) {
-      const placeMotionToggle = () => {
-        if (mobileLayout.matches) headerRsvp.before(root);
-        else doc.body.append(root);
-      };
-      placeMotionToggle();
-      on(mobileLayout, 'change', placeMotionToggle);
-    }
 
     function killTimelines() {
       sectionTriggers.clear();
@@ -1139,9 +1131,11 @@ window.WEDDING_SETTINGS = {
     function syncToggle() {
       const isOff = reduced();
       doc.documentElement.classList.toggle('wedding-motion-off', isOff);
+      root.hidden = staticLayout?.matches === true;
       toggle.textContent = isOff ? 'Motion: off' : 'Motion: on';
       toggle.setAttribute('aria-pressed', String(!isOff));
       toggle.title = media.matches ? 'Your system prefers reduced motion' : 'Turn animated transitions on or off';
+      if (!isOff) pondRipples ??= win.WeddingPondRipples?.mount(win);
       pondRipples?.setEnabled(!isOff);
       if (hasGSAP) {
         if (isOff) killTimelines();
@@ -1358,9 +1352,11 @@ window.WEDDING_SETTINGS = {
     });
     on(win, 'resize', () => { headerHeight = doc.querySelector('.site-header')?.getBoundingClientRect().height || 0; });
     on(doc, 'visibilitychange', () => { if (doc.hidden) stop(); });
-    on(toggle, 'click', () => { enabled = !enabled; try { win.localStorage.setItem('wedding-motion', enabled ? 'on' : 'off'); } catch (_) {} stop(); syncToggle(); });
+    const refreshMotionPreference = () => { stop(); refresh(); };
+    on(toggle, 'click', () => { enabled = !enabled; try { win.localStorage.setItem('wedding-motion', enabled ? 'on' : 'off'); } catch (_) {} refreshMotionPreference(); });
     on(win, 'wedding:navigate', event => { refresh(); navigate(event.detail.id, event.detail); });
-    if (media.addEventListener) on(media, 'change', () => { stop(); syncToggle(); });
+    if (media.addEventListener) on(media, 'change', refreshMotionPreference);
+    if (staticLayout?.addEventListener) on(staticLayout, 'change', refreshMotionPreference);
     if (win.IntersectionObserver) observer = new win.IntersectionObserver(entries => {
       if (pending) return;
       const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -1696,10 +1692,8 @@ body{font-family:var(--font-body);font-size:1rem;line-height:1.65;font-synthesis
  .figma-header .figma-canvas{padding:10px max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left))}
  .figma-header .figma-canvas>div{min-height:46px;gap:8px;justify-content:space-between;flex-wrap:wrap}
  .mobile-menu-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 14px;border:1px solid #32464040;border-radius:4px;background:transparent;color:var(--ink);font:500 .875rem/1.4 var(--font-body);cursor:pointer;order:0}
- .figma-header .figma-canvas>div>a{min-height:44px;padding:10px 16px!important;display:inline-flex;align-items:center;justify-content:center;order:2}
- .figma-header #story-motion{order:1}
- .figma-header .motion-toggle{position:static;font-size:.8125rem;min-height:44px;padding:8px 9px}
- .figma-header [data-name="Navigation · editable labels"]{display:flex;flex:1 1 100%;flex-direction:column;align-items:stretch;gap:0;max-height:min(65svh,460px);overflow:auto;padding:8px 0 12px;order:3;width:100%}
+ .figma-header .figma-canvas>div>a{min-height:44px;padding:10px 16px!important;display:inline-flex;align-items:center;justify-content:center}
+ .figma-header [data-name="Navigation · editable labels"]{position:absolute;top:calc(100% + 10px);left:0;display:flex;flex-direction:column;align-items:stretch;gap:0;width:100%;max-height:min(65svh,460px);overflow:auto;overscroll-behavior:contain;padding:8px 12px 12px;background:var(--paper);border:1px solid #3246401a;border-radius:0 0 6px 6px;box-shadow:0 8px 20px #32464020}
  .figma-header:not(.menu-open) [data-name="Navigation · editable labels"]{display:none}
  .figma-header [data-name="Navigation · editable labels"] a{display:flex;align-items:center;min-height:48px;padding:10px 6px;border-top:1px solid #32464018;text-decoration:none;white-space:normal;overflow-wrap:anywhere}
  .figma-header [data-name="Navigation · editable labels"] span{font-size:.875rem!important}

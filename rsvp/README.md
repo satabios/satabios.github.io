@@ -17,7 +17,7 @@ Edit `settings.js`, save, and reload. Keep quotation marks and commas valid; do 
 - `site.ink`, `site.accent`: text and accent colours, in six-digit hex format. Artwork colours remain part of the paintings.
 - `site.paper`: base page paper colour; the individual painted scenes retain their coordinated backgrounds.
 - `site.mobilePaperWash`: 0.65–0.98; higher values soften the artwork behind mobile text more strongly.
-- `motion.enabledByDefault`: true or false. A visitor’s saved motion choice and system reduced-motion preference take precedence.
+- `motion.enabledByDefault`: desktop default. A visitor’s saved motion choice and system reduced-motion preference take precedence. Mobile layouts and touch-first devices use still artwork.
 - `rsvp.endpoint`: the Google Apps Script web app URL ending in `/exec`, or the endpoint of a compatible JSON form service. Keep it blank until the service is deployed. Never put secret API keys here.
 - `rsvp.maxPartySize`: 1–30; updates the choices and validation together.
 
@@ -27,7 +27,7 @@ Changing a value updates desktop and mobile on the next load. A cached browser m
 
 ## Mobile composition
 
-The mobile header holds Sections, Motion, and RSVP. Section headings and opening copy sit over the paintings, with a soft paper wash for readability. Longer sections flow into the paper beneath the artwork. Biographies stack on phones and sit side by side on tablets. RSVP inputs use 16px text and larger touch targets. Phone scrolling is unpinned, and the illustrations animate according to the visitor’s motion preference.
+The mobile header holds Sections and RSVP. Section headings and opening copy sit over the paintings, with a soft paper wash for readability. Longer sections flow into the paper beneath the artwork. Biographies stack on phones and sit side by side on tablets. RSVP inputs use 16px text and larger touch targets. The paintings are still, and section links jump directly to the destination.
 
 ## A single downloadable HTML after later edits
 

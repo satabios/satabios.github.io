@@ -1199,6 +1199,14 @@ window.WEDDING_SETTINGS = {
         pending.source?.classList.remove('motion-departing');
         pending.target.classList.remove('motion-arriving');
         doc.documentElement.style.scrollBehavior = pending.oldBehavior;
+        if (!pending.arrived) {
+          const readingLine = headerHeight + (win.innerHeight - headerHeight) * .2;
+          const visible = sections.find(section => {
+            const bounds = section.getBoundingClientRect();
+            return bounds.top <= readingLine && bounds.bottom > readingLine;
+          });
+          if (visible) updateActive(visible.id);
+        }
       }
       root.classList.remove('motion-running');
       pending = null; raf = 0;
@@ -1243,6 +1251,7 @@ window.WEDDING_SETTINGS = {
       const route = plan(from, id, destination - start, reduced() || options.instant);
       const source = doc.getElementById(from)?.closest('.story-scene');
       pending = { target, source, oldBehavior: doc.documentElement.style.scrollBehavior, id, route };
+      updateActive(id);
       doc.documentElement.style.scrollBehavior = 'auto';
       const hash = '#' + encodeURIComponent(id);
       let fallbackHash = false;
@@ -1266,7 +1275,6 @@ window.WEDDING_SETTINGS = {
         win.scrollTo({ top: endY(), behavior: 'instant' });
         if (hasGSAP) ScrollTrigger.update();
         pending.arrived = true;
-        updateActive(id);
         focusTarget(target);
         doc.documentElement.style.scrollBehavior = pending.oldBehavior;
         source?.classList.remove('motion-departing');
@@ -1342,7 +1350,9 @@ window.WEDDING_SETTINGS = {
     on(win, 'popstate', locationChange); on(win, 'hashchange', locationChange);
     const interruptNavigation = () => { if (pending) stop(true); };
     on(win, 'wheel', interruptNavigation, { passive: true });
-    on(win, 'touchstart', interruptNavigation, { passive: true });
+    on(win, 'touchstart', event => {
+      if (!event.target.closest?.('.site-header')) interruptNavigation();
+    }, { passive: true });
     on(doc, 'keydown', event => {
       if (['Escape', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key) && !event.target.closest?.('input, textarea, select')) stop();
     });
